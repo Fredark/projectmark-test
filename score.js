@@ -1,9 +1,10 @@
 export default {
-  props: ['player1', 'player2'],
+  props: ["players"],
   template: `
     <div class="score">
-      <b>Player 1:</b> <span class="victories">{{ player1 }}</span><br />
-      <b>Player 2:</b> <span class="victories">{{ player2 }}</span>
+      <div class="player" v-for="(player, index) in players" :key="index">
+        <b>{{ player.name }}({{player.symbol}}):</b> <span class="victories">{{ player.score }}</span>
+      </div>
     </div>
   `,
 }

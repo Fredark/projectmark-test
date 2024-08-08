@@ -14,9 +14,9 @@
   display: inline-block;
   width: 1rem;
   background-color: lightblue;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   text-align: center;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 .game {
@@ -30,8 +30,78 @@
   width: 60vh;
   height: 60vh;
   margin: 1.5rem auto;
+  position: relative;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
+}
+
+.board:before {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  background-color: #51c015;
+  top: 0;
+  left: 33.33%;
+  opacity: 0;
+  visibility: hidden;
+  z-index: -1;
+}
+
+:not(.board[data-winner-type=""])::before {
+  opacity: 1;
+  visibility: visible;
+  z-index: 10;
+}
+
+.board[data-winner-type*="vertical"]::before {
+  height: 100%;
+  width: 4px;
+  left: 50%;
+  top: 0;
+}
+
+.board[data-winner-type*="horizontal"]::before {
+  height: 4px;
+  width: 100%;
+  left: 0;
+}
+
+.board[data-winner-type*="diagonal"]::before {
+  top: 0;
+  left: 50%;
+}
+
+.board[data-winner-type="horizontal-1"]::before {
+  top: 15.6%;
+}
+
+.board[data-winner-type="horizontal-2"]::before {
+  top: 49%;
+}
+
+.board[data-winner-type="horizontal-3"]::before {
+  top: 82.6%;
+}
+
+.board[data-winner-type="vertical-1"]::before {
+  left: 16%;
+}
+
+.board[data-winner-type="vertical-2"]::before {
+  left: 49.5%;
+}
+
+.board[data-winner-type="vertical-3"]::before {
+  left: 83%;
+}
+
+.board[data-winner-type="diagonal-1"]::before {
+  transform: rotate(-45deg) translateX(-50%);
+}
+
+.board[data-winner-type="diagonal-2"]::before {
+  transform: rotate(45deg) translateX(-50%);
 }
 
 .tile {
@@ -49,23 +119,30 @@
   background-color: lightgray;
 }
 
-.tile:nth-child(1), .tile:nth-child(2),
-.tile:nth-child(4), .tile:nth-child(5),
-.tile:nth-child(7), .tile:nth-child(8) {
+.tile:nth-child(1),
+.tile:nth-child(2),
+.tile:nth-child(4),
+.tile:nth-child(5),
+.tile:nth-child(7),
+.tile:nth-child(8) {
   border-right: 4px solid black;
 }
 
-.tile:nth-child(1), .tile:nth-child(2), .tile:nth-child(3),
-.tile:nth-child(4), .tile:nth-child(5), .tile:nth-child(6) {
+.tile:nth-child(1),
+.tile:nth-child(2),
+.tile:nth-child(3),
+.tile:nth-child(4),
+.tile:nth-child(5),
+.tile:nth-child(6) {
   border-bottom: 4px solid black;
 }
 
 .message {
+  margin-bottom: 15px;
   text-align: center;
 }
 
 .play-again {
-  padding: .5rem 1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
 }
-
-
