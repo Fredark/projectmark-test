@@ -59,7 +59,7 @@ export default {
   template: `
     <div class="game">
       <Score :players="players" />
-      <Board :defineWinner="defineWinner" :defineDraw="defineDraw" :players="players" :playerTurn="playerTurn" :switchPlayers="switchPlayers" :gameState="gameState" @update:gameState="gameState = $event" />
+      <Board :defineWinner="defineWinner" :defineDraw="defineDraw" :players="players" :playerTurn="playerTurn" :switchPlayers="switchPlayers" :gameState="gameState" />
       <Message :text="message" />
       <PlayAgain v-if="gameState === 'ended'" @click="startGame" />
     </div>
